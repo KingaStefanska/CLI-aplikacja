@@ -29,7 +29,7 @@ const getContactById = async (contactId) => {
 const removeContact = async (contactId) => {
   const contacts = await fetchContacts();
   const contact = await getContactById(contactId);
-  const newContacts = contacts.find((contact) => contact.id !== contactId);
+  const newContacts = contacts.filter((contact) => contact.id !== contactId);
   const stringifyNewContacts = JSON.stringify(newContacts);
   await fs.writeFile(contactsPath, stringifyNewContacts);
   return contact;
